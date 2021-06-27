@@ -1,0 +1,152 @@
+﻿@model PagedList.IPagedList<ConnectDb.EF.Content>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách tin tức
+}
+
+@section jsFooter{
+<script>
+        var ConfirmDelete = function (id) {
+            $('#hiddenUserId').val(id);
+            $('#myModal').modal('show');
+
+        }
+        var DeleteUser = function () {
+            $('#loaderDiv').show();
+
+            var id = $('#hiddenUserId').val();
+            $.ajax({
+                type: "POST",
+                url: "/User/Delete",
+                data: { id: id },
+                success: function (status) {
+                    $('#loaderDiv').hide();
+                    $('#myModal').modal("hide");
+                    $('#row_' + id).remove();
+                }
+            })
+        }
+</script>
+}
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    @using (Html.BeginForm("Index", "Content", FormMethod.Get))
+                    {
+                        <div class="form-group mb-0">
+                            <a class="btn btn-sm btn-primary" href="/Admin/Content/Create" style="float: right;">Thêm mới</a>
+                            <div class="input-group input-group-alternative input-group-merge" style="width: 25%; float: right; margin: 0 10px 0 0">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="input-group-text"><i class="fas fa-search"></i></button>
+                                </div>
+                                <input class="form-control" placeholder="Tìm kiếm" type="text" name="searchString">
+                            </div>
+                        </div>
+
+
+                    }
+                    <h3 class="mb-0">Quản lý danh sách tin tức</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Tên nội dung</th>
+                                <th>Tiêu đề</th>
+                                <th>Hình ảnh</th>
+                                <th>Chi tiết</th>
+                                <th>Ngày đăng</th>
+                                <th>Trạng thái</th>
+                                <th class="text-lg-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.ContentID">
+                                    <td>@item.ContentName</td>
+                                    <td>@item.MetaTitle</td>
+                                    <td>@item.Images</td>
+                                    <td>@item.Detail</td>
+                                    <td>@item.CreateDate</td>
+                                    <td>@item.Status</td>
+                                    <td class="td-actions text-lg-center">
+                                        <a href="/Admin/User/Edit/@item.ContentID" title="Sửa" class="btn btn-outline-success">
+                                            <i class="ni ni-settings"></i>
+                                        </a>
+
+                                        <a href="#" rel="tooltip" title="Xoá" onclick="ConfirmDelete(@item.ContentID)" class="btn btn-outline-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hiddenUserId" />
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Xoá danh sách tin</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+
+                                </div>
+                                <div class="modal-body">
+                                    <h4> Bạn chắc chắn muốn xoá danh sách tin này chứ ?</h4>
+                                    <div style="text-align:center; display:none" id="loaderDiv">
+                                        <img width="150" src="~/Assets/admin/img/theme/InternetSlowdown_Day.gif" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class=" btn btn-success" data-dismiss="modal">Huỷ</a>
+                                    <a href="#" class="btn btn-danger" onclick="DeleteUser()">Xoá</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer py-4" style="float:right;">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { @class = "page-link", page, @searchString = ViewBag.SearchString }));
+                                </li>
+                                @*<li class="page-item">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>*@
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }));*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

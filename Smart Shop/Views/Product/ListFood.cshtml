@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Thực phẩm đóng gói";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listFood = (List<ConnectDb.EF.Product>)ViewBag.ListFood;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Thực phẩm đóng gói</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!--- household --->
+<div class="products">
+    <div class="container">
+        <div class="col-md-4 products-left">
+            <div class="categories">
+                <h2>Danh mục</h2>
+                <ul class="cate">
+                    <li><a href="/cua-hang-tap-hoa" title="Cửa hàng tạp hoá"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cửa hàng tạp hoá</a></li>
+                    <ul>
+                        <li><a href="/cua-hang-tap-hoa" title="Trái cây khô"><i class="fa fa-arrow-right" aria-hidden="true"></i>Trái cây khô</a> </li>
+                        <li><a href="/cua-hang-tap-hoa" title="Thực phẩm đông lạnh"><i class="fa fa-arrow-right" aria-hidden="true"></i>Thực phẩm đông lạnh</a> </li>
+                        <li><a href="/cua-hang-tap-hoa" title="Sữa"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sữa</a> </li>
+                    </ul>
+
+                    <li><a href="/do-dung-gia-dinh" title="Đồ dùng gia đình"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đồ dùng gia đình</a></li>
+                    <ul>
+                        <li><a href="/do-dung-gia-dinh" title="Dụng cụ nấu ăn"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ nấu ăn</a></li>
+                        <li><a href="/do-dung-gia-dinh" title="Dụng cụ lau nhà"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ lau nhà</a></li>
+                        <li><a href="/do-dung-gia-dinh" title="Dụng cụ đựng đồ ăn"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ đựng đồ ăn</a></li>
+                        <li><a href="/do-dung-gia-dinh" title="Gia vị"><i class="fa fa-arrow-right" aria-hidden="true"></i>Gia vị</a> </li>
+                    </ul>
+
+                    <li><a href="/do-dung-ca-nhan" title="Đồ dùng cá nhân"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đồ dùng cá nhân</a></li>
+                    <ul>
+                        <li><a href="/do-dung-ca-nhan" title="Xà phòng trẻ em"><i class="fa fa-arrow-right" aria-hidden="true"></i>Xà phòng trẻ em</a> </li>
+                        <li><a href="/do-dung-ca-nhan" title="Phụ kiện chăm sóc trẻ em"><i class="fa fa-arrow-right" aria-hidden="true"></i>Phụ kiện chăm sóc trẻ em</a> </li>
+                        <li><a href="/do-dung-ca-nhan" title="Kem dưỡng da dành cho trẻ em"><i class="fa fa-arrow-right" aria-hidden="true"></i>Kem dưỡng da dành cho trẻ em</a> </li>
+                        <li><a href="/do-dung-ca-nhan" title="Bột trẻ em"><i class="fa fa-arrow-right" aria-hidden="true"></i>Bột trẻ em</a> </li>
+                        <li><a href="/do-dung-ca-nhan" title="Tã & Khăn lau"><i class="fa fa-arrow-right" aria-hidden="true"></i>Tã & Khăn lau</a> </li>
+                    </ul>
+
+                    <li><a href="/thuc-pham-dong-goi" title="Thực phẩm đóng gói"><i class="fa fa-arrow-right" aria-hidden="true"></i>Thực phẩm đóng gói</a></li>
+                    <ul>
+                        <li><a href="/thuc-pham-dong-goi" title="Mì ăn liền"><i class="fa fa-arrow-right" aria-hidden="true"></i>Mì ăn liền</a> </li>
+                        <li><a href="/thuc-pham-dong-goi" title="Mứt"><i class="fa fa-arrow-right" aria-hidden="true"></i>Mứt</a> </li>
+                        <li><a href="/thuc-pham-dong-goi" title="Bánh"><i class="fa fa-arrow-right" aria-hidden="true"></i>Bánh</a> </li>
+                        <li><a href="/thuc-pham-dong-goi" title="Ngũ cốc ăn sáng"><i class="fa fa-arrow-right" aria-hidden="true"></i>Ngũ cốc ăn sáng</a> </li>
+                        <li><a href="/thuc-pham-dong-goi" title="Đồ ăn đóng hộp"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đồ ăn đóng hộp</a> </li>
+                    </ul>
+
+                    <li><a href="/do-uong" title="Đồ uống"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đồ uống</a></li>
+                    <ul>
+                        <li><a href="/do-uong" title="Nước giải khát"><i class="fa fa-arrow-right" aria-hidden="true"></i>Nước giải khát</a> </li>
+                        <li><a href="/do-uong" title="Cafe"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cafe</a> </li>
+                    </ul>
+
+                    <li><a href="/san-pham-dac-biet" title="Sản phẩm đặc biệt"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sản phẩm đặc biệt</a></li>
+                    <ul>
+                        <li><a href="/san-pham-dac-biet" title="Rau & Củ"><i class="fa fa-arrow-right" aria-hidden="true"></i>Rau & Củ</a> </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 products-right">
+            <div class="agile_top_brands_grids" style="margin: 0px 0;">
+                @foreach (var item in listFood)
+                {
+                    var url = "/chi-tiet/" + item.SeoTitle + "-" + item.ProductID;
+                    <div class="col-md-4 top_brand_left">
+                        <div class="hover14 column">
+                            <div class="agile_top_brand_left_grid">
+                                <div class="agile_top_brand_left_grid_pos">
+                                    <img src="~/Assets/client/images/offer.png" alt=" " class="img-responsive">
+                                </div>
+                                <div class="agile_top_brand_left_grid1">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb">
+                                                <a href="@url"><img title="@item.ProductName " alt="@item.ProductName " src="@item.Image @item.MoreImage"></a>
+                                                <p>@item.ProductName</p>
+                                                <h4>₫@(item.PromotionPrice.HasValue ? item.PromotionPrice.Value.ToString("N0") : "")<span>₫@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></h4>
+                                            </div>
+                                            <div class="snipcart-details top_brand_home_details">
+                                                <a href="/them-gio-hang?productId=@item.ProductID&quantity=1">
+                                                    <fieldset>
+                                                        <input type="submit" name="submit" value="Thêm vào giỏ" class="button" />
+                                                    </fieldset>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="clearfix"> </div>
+            </div>
+
+            <nav class="numbering">
+                <ul class="pagination paging">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

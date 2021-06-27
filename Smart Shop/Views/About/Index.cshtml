@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var about = (List<ConnectDb.EF.About>)ViewBag.About;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Giới thiệu</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- about -->
+<div class="about">
+    <div class="container">
+        <h3 class="w3_agile_header">Về chúng tôi</h3>
+        <div class="about-agileinfo w3layouts">
+            <div class="col-md-8 about-wthree-grids grid-top">
+                @foreach (var item in about)
+                {
+                    <h4>@item.AboutName </h4>
+                    <p class="top">Đi từ một cửa hàng nhỏ, đến ngày hôm này chúng tôi đã phát triển nó thành một cửa hàng có quy mô lớn hơn, nhằm phục vụ cho khách hàng được tốt hơn. Cửa hàng đã mở rộng để có thể chứa thêm những gian hàng mới, cung cấp thêm nhiều sản phẩm cho khách hàng.</p>
+                    <p>Chúng tôi có đội ngũ nhân viên nhiệt tình, tận tình giải đáp các thắc mắc cho khách hàng, hướng dẫn và giải thích những thắc mắc khi mua hàng của mọi người. </p>
+                    <p> Cuối cùng, xin cảm ơn mọi người đã ủng hộ cửa hàng của chúng tôi, mong rằng mọi người sẽ tiếp tục ủng hộ cửa hàng chúng tôi, và mong mọi người có thể góp ý để cửa hàng có thể phát triển hơn nữa trong tương lai.</p>
+                }
+
+                <div class="about-w3agilerow">
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="~/Assets/client/images/p3.jpg" alt="" class="img-responsive zoom-img" />
+                    </div>
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="~/Assets/client/images/p4.jpg" alt="" class="img-responsive zoom-img" />
+                    </div>
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="~/Assets/client/images/p3.jpg" alt="" class="img-responsive zoom-img" />
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="col-md-4 about-wthree-grids">
+                <div class="offic-time">
+                    <div class="time-top">
+                        <h4>Thông tin liên hệ :</h4>
+                    </div>
+                    <div class="time-bottom">
+                        <h5>nhom29@gmail.com </h5>
+                        <h5>0123 456 789</h5>
+                        <p>Số 5, Đường Phượng Hoàng, Thành phố Vinh. </p>
+                    </div>
+                </div>
+                <div class="testi">
+                    <h3 class="w3_agile_header">Nhận xét</h3>
+                    <!--//End-slider-script -->
+                    <script src="~/Assets/client/js/responsiveslides.min.js"></script>
+                    <script>
+							// You can also use "$(window).load(function() {"
+							$(function () {
+							  // Slideshow 5
+							  $("#slider5").responsiveSlides({
+								auto: true,
+								pager: false,
+								nav: true,
+								speed: 500,
+								namespace: "callbacks",
+								before: function () {
+								  $('.events').append("<li>before event fired.</li>");
+								},
+								after: function () {
+								  $('.events').append("<li>after event fired.</li>");
+								}
+							  });
+
+							});
+                    </script>
+                    <div id="top" class="callbacks_container">
+                        <ul class="rslides" id="slider5">
+                            <li>
+                                <div class="testi-slider">
+                                    <h4>" TÔI RẤT HÀI LÒNG.</h4>
+                                    <p> Cửa hàng đã mang lại các sản phẩm tốt cho người mua như chúng tôi.</p>
+                                    <div class="testi-subscript">
+                                        <p><a href="#">Chị Lan,</a> TP Vinh</p>
+                                        <span class="w3-agilesub"> </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="testi-slider">
+                                    <h4>" TÔI RẤT THÍCH NƠI NÀY.</h4>
+                                    <p>Thái độ phục vụ của nhân viên rất tốt, tôi rất thích điều này.</p>
+                                    <div class="testi-subscript">
+                                        <p><a href="#">Anh An,</a>TP Vinh</p>
+                                        <span class="w3-agilesub"> </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="testi-slider">
+                                    <h4>" TÔI RẤT HÀI LÒNG.</h4>
+                                    <p>Sản phẩm của cửa hàng tốt, nhân viên tư vấn phục vụ nhiệt tình, sẽ ủng hộ cửa hàng.</p>
+                                    <div class="testi-subscript">
+                                        <p><a href="#">Chị Huệ,</a>TP Vinh</p>
+                                        <span class="w3-agilesub"> </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //about -->
+<!-- about-slid -->
+<div class="about-slid agileits-w3layouts">
+    <div class="container">
+        <div class="about-slid-info">
+            <h2>Chất lượng sản phẩm là trên hết, chất lượng hơn số lượng</h2>
+            <p>Cửa hàng chúng tôi luôn đặt chất lượng sản phẩm lên hàng đầu, nhằm mang đến những sản phẩm tốt nhất phục vụ cho khách hàng, tạo uy tín cho cửa hàng. Chúng tôi rất vui khi được phục vụ cho khách hàng.</p>
+        </div>
+    </div>
+</div>
+<!-- //about-slid -->
+<!-- about-team -->
+
+

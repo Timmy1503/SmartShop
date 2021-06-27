@@ -1,0 +1,73 @@
+﻿@model List<Smart_Shop.Models.CartItem>
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+    <script src="/assets/client/js/controller/cart.js"></script>
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Thanh toán</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="login">
+    <div class="container">
+        <h2>Thanh toán</h2>
+
+        <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+
+            @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Thanh toán hoá đơn</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label class="col-md-6" style="padding: 0 0 8px 15px;">Người nhận</label>
+                        <div class="col-md-12">
+                            <input name="shipName" class="form-control" placeholder="Nhập tên người nhận" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-6" style="padding: 0 0 8px 15px;">Điện thoại</label>
+                        <div class="col-md-12">
+                            <input name="mobile" class="form-control" placeholder="Nhập số điện thoại" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-6" style="padding: 0 0 8px 15px;">Địa chỉ</label>
+                        <div class="col-md-12">
+                            <input name="address" class="form-control" placeholder="Nhập địa chỉ" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-6" style="padding: 0 0 8px 15px;">Email</label>
+                        <div class="col-md-12">
+                            <input name="email" class="form-control" placeholder="Nhập Email" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <input id="btnPayment" type="submit" value="Thanh toán" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+             <p><a href="/gio-hang">Quay lại giỏ hàng</a> (Hoặc) quay lại <a href="/">Trang chủ<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+        </div>
+       
+    </div>
+</div>

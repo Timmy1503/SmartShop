@@ -1,0 +1,42 @@
+﻿@model List<ConnectDb.EF.Menu>
+<div class="container" style="width: 82%;">
+    <nav class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header nav_2">
+            <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+            <ul class="nav navbar-nav">
+                @foreach (var item in Model)
+                {
+                    <li class="active"><a href="@item.Link" title="@item.MenuName" target="@item.Target"  class="act">@item.MenuName</a></li>
+
+                }
+            </ul>
+        </div>
+    </nav>
+</div>
+@*<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cửa hàng tạp hóa<b class="caret"></b></a>
+    <ul class="dropdown-menu multi-column columns-3">
+        <div class="row">
+            <div class="multi-gd-img">
+                <ul class="multi-column-dropdown">
+                    <h6>Tất cả mặt hàng</h6>
+                    <li><a href="groceries.html">Đồ dùng gia đình</a></li>
+                    <li><a href="groceries.html">Thực phẩm đóng gói</a></li>
+                    <li><a href="groceries.html">Sữa</a></li>
+                    <li><a href="groceries.html">Trái cây khô</a></li>
+                    <li><a href="groceries.html"> Đồ uống </a></li>
+                    <li><a href="groceries.html">Gạo và các sản phẩm từ gạo</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </ul>
+</li>*@

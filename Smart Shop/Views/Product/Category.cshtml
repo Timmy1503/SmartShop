@@ -1,0 +1,116 @@
+﻿@model  List<ConnectDb.ViewModel.ProductViewModel>
+@{
+    var category = (ConnectDb.EF.Menu)ViewBag.Category;
+    ViewBag.Title = category.MenuName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Thực phẩm đóng gói</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!--- pakagedfoods --->
+<div class="products">
+    <div class="container">
+        <div class="col-md-4 products-left">
+            <div class="categories">
+                <h2>Danh mục</h2>
+                <ul class="cate">
+                    <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đồ dùng gia đình</a></li>
+                    <ul>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ nấu ăn</a></li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ lau nhà</a></li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Các loại cốc</a></li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Bình đựng nước</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dụng cụ đựng đồ ăn</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Thuốc diệt côn trùng</a></li>
+                    </ul>
+                    <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Hàng tạp hóa & mặt hàng chủ lực</a></li>
+                    <ul>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Mứt</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Bánh</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dầu ăn</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Kẹo</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Gia vị</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sữa</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Gạo và các sản phẩm từ gạo</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Muối, đường & đường thốt nốt</a></li>
+                    </ul>
+                    <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Chăm sóc cá nhân</a></li>
+                    <ul>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Chăm sóc trẻ</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sữa tắm</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Khăn lau</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Chăm sóc da</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dầu gội</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Chăm sóc răng miệng</a> </li>
+                        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Vệ sinh cá nhân</a> </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 products-right">
+            <div class="agile_top_brands_grids">
+                @foreach (var item in Model)
+                {
+                    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.CategoryName;
+                    <div class="col-md-4 top_brand_left">
+                        <div class="hover14 column">
+                            <div class="agile_top_brand_left_grid">
+                                <div class="agile_top_brand_left_grid_pos">
+                                    <img src="~/Assets/client/images/offer.png" alt=" " class="img-responsive">
+                                </div>
+                                <div class="agile_top_brand_left_grid1">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb">
+                                                @*<a href="@url"><img title=" " alt=" @item.ProductName" src="@item.Image"></a>
+                                                <p>@item.ProductName</p>
+                                                <h4>₫@(item.PromotionPrice.HasValue ? item.PromotionPrice.Value.ToString("N0") : "")<span>₫@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></h4>
+                                            </div>
+                                            <div class="snipcart-details top_brand_home_details">
+                                                <a href="/them-gio-hang?productId=@item.ProductID&quantity=1">
+                                                    <fieldset>
+                                                        <input type="submit" name="submit" value="Thêm vào giỏ" class="button" />
+                                                    </fieldset>
+                                                </a>*@
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+
+                }
+            </div>
+
+            <nav class="numbering">
+                <ul class="pagination paging">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

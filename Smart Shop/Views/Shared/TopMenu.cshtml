@@ -1,0 +1,51 @@
+﻿@model List<ConnectDb.EF.Menu>
+@using Smart_Shop.Models
+<div class="container">
+    <div class="w3l_offers">
+        <p>GIẢM GIÁ LÊN ĐẾN 70%. SỬ DỤNG MÃ "SALE70%". <a href="products.html">Mua sắm ngay nào!</a></p>
+    </div>
+    <div class="agile-login" style="display: flex; justify-content: center; flex-wrap: wrap;">
+        @{
+            var session = (Smart_Shop.Common.UserLogin)Session[Smart_Shop.Common.CommonConstants.USER_SESSION];
+        }
+        @if (session == null)
+        {
+            <ul>
+                @foreach (var item in Model)
+                {
+
+                    <li><a href="@item.Link" title="@item.MenuName" target="@item.Target">@item.MenuName </a></li>
+
+                }
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <li style="color: #ffffff; font-weight:700;">Xin chào: @session.UserName</li>
+                <li>@Html.ActionLink("Đăng xuất", "Logout", "User")</li>
+            </ul>
+        }
+
+    </div>
+    <div class="product_list_header">
+       @{Html.RenderAction("HeaderCart", "Home");}
+        @*@if (Session["CartSession"] != null)
+        {
+            foreach (var item in (List<CartItem>)Session["CartSession"])
+            {
+                <button class="w3view-cart" type="submit" name="submit" value="">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    @item.Product.ProductName (@item.Quantity)
+                </button>
+            }
+        }
+        else
+        {
+            <button class="w3view-cart" type="submit" name="submit" value="">
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            </button>
+        }*@
+    </div>
+    <div class="clearfix"> </div>
+</div>

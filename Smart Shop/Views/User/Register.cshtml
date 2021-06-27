@@ -1,0 +1,115 @@
+﻿@model Smart_Shop.Models.RegisterModel
+@using BotDetect.Web.Mvc;
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet" type="text/css" />
+@{
+    MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
+    exampleCaptcha.UserInputID = "CaptchaCode";
+}
+@{
+    ViewBag.Title = "Tạo tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Tạo tài khoản</li>
+        </ol>
+    </div>
+</div>
+
+<div class="register">
+    <div class="container">
+        <h2>Đăng ký ở đây</h2>
+        <div class="login-form-grids">
+            <h5>Thông tin cá nhân</h5>
+            @using (Html.BeginForm("Register", "User", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                <div class="form-group">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @if (ViewBag.Success != null)
+                    {
+                        <div class="alert alert-success">@ViewBag.Success</div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.UserName, new {  @class = "form-control", placeholder = "Nhập tên tài khoản" } )
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(model => model.Password, new {  @class = "form-control", placeholder = "Nhập mật khẩu"  })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Nhập lại mật khẩu" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Nhập họ và tên"  })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Address, new {  @class = "form-control", placeholder = "Nhập địa chỉ" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Nhập email" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "col-md-6" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 0px 0px 0px 16px;margin: 0px 0px 0px -13px;">
+                    @Html.Captcha(exampleCaptcha)
+                    @Html.TextBox("CaptchaCode")
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <input type="submit" value="Đăng ký" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="register-home">
+            <a href="/">Trang chủ</a>
+        </div>
+    </div>
+</div>

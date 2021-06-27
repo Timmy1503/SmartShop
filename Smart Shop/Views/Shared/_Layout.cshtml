@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.Keywords"/>
+    <meta  name="description" content="@ViewBag.Descriptions"/>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Assets/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="~/Assets/client/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/Assets/client/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href="~/Assets/client/css/skdslider.css" rel="stylesheet" />
+    @*<link href="~/Assets/client/fonts/fontawesome-free-5.13.1-web/css/all.css" rel="stylesheet" />*@
+    <link href="~/Assets/client/fonts/fontawesome-free-5.13.1-web/css/fontawesome.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="~/Assets/client/fonts/fontawesome-free-5.13.1-web/css/fontawesome.min.css" rel="stylesheet" />
+    @*<link href="~/Assets/client/fonts/fontawesome-free-5.13.1-web/css/all.min.css" rel="stylesheet" />*@
+    <link href="~/Assets/client/css/bootstrap-social.css" rel="stylesheet" />
+
+    <link href="~/Assets/client/css/jquery-ui.css" rel="stylesheet" />
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Assets/client/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Assets/client/js/easing.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+</head>
+
+<body>
+    <!-- header -->
+    <div class="agileits_header">
+        @{Html.RenderAction("TopMenu", "Home"); }
+    </div>
+
+    <div class="logo_products">
+        <div class="container">
+            <div class="w3ls_logo_products_left1">
+                <ul class="phone_email">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>Đặt hàng trực tuyến hoặc gọi: (+0123) 234 567</li>
+
+                </ul>
+            </div>
+            <div class="w3ls_logo_products_left">
+                <h1><a href="/" ref="nofollow">Smart Shop</a></h1>
+            </div>
+            <div class="w3l_search">
+                <form action="/tim-kiem" method="get">
+                    <input type="search" name="keyword" id="txtkeyword" placeholder="Nhập sản phẩm cần tìm..." required="">
+                    <button type="submit" class="btn btn-default search" aria-label="Left Align">
+                        <i class="fa fa-search" aria-hidden="true"> </i>
+                    </button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //header -->
+    <!-- navigation -->
+    <div class="navigation-agileits">
+        @{Html.RenderAction("MainMenu", "Home"); }
+    </div>
+    @RenderSection("slide", required: false)
+    <!-- //navigation -->
+    <!-- main-slider -->
+    @RenderBody()
+
+    <div class="footer">
+        @{ Html.RenderAction("Footer", "Home");}
+
+        <div class="footer-copy">
+
+            <div class="container">
+                <p>© 2021 Smart Shop</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer-botm">
+        <div class="container">
+            <div class="w3layouts-foot">
+                <ul>
+                    <li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="payment-w3ls">
+                <img src="~/Assets/client/images/card.png" alt=" " class="img-responsive">
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Assets/client/js/bootstrap.min.js"></script>
+
+    <!-- top-header and slider -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <script src="~/Assets/client/js/minicart.min.js"></script>
+    <script>
+        // Mini Cart
+        paypal.minicart.render({
+            action: '#'
+        });
+
+        if (~window.location.search.indexOf('reset=true')) {
+            paypal.minicart.reset();
+        }
+    </script>
+    <!-- main slider-banner -->
+    <script src="~/Assets/client/js/skdslider.min.js"></script>
+    @*<link href="~/Assets/client/css/skdslider.css" rel="stylesheet">*@
+    <script src="~/Assets/client/js/controller/searchController.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+            jQuery('#responsive').change(function () {
+                $('#responsive_wrapper').width(jQuery(this).val());
+            });
+
+        });
+    </script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- //main slider-banner -->
+    @RenderSection("jsFooter", required: false)
+</body>
+</html>

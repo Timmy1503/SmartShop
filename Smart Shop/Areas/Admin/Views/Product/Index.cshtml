@@ -1,0 +1,183 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ConnectDb.EF.Product>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách sản phẩm
+
+}
+@section jsFooter{
+
+    <script src="~/Assets/admin/js/controller/menuController.js"></script>
+    <script type="text/javascript">
+        var ConfirmDeleteProduct = function (id) {
+            $('#hiddenProductId').val(id);
+            $('#myModalProduct').modal('show');
+
+        }
+        var DeleteProduct = function () {
+            $('#loaderDivProduct').show();
+
+            var id = $('#hiddenProductId').val();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Product/Delete",
+                data: { id: id },
+                success: function (status) {
+                    $('#loaderDivProduct').hide();
+                    $('#myModalProduct').modal("hide");
+                    $('#row_' + id).remove();
+                }
+            })
+        }
+
+    </script>
+
+}
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                    {
+
+                        if (TempData["AlertMessage"] != null)
+                        {
+                            <div id="AlertBox1" class="alert @TempData["AlertType"] hide">@TempData["AlertMessage"]</div>
+                        }
+
+                        <div class="form-group mb-0">
+                            <a class="btn btn-info" href="/Admin/Product/Create" style="float: right;"><i class="fa fa-plus"></i><span>Thêm mới</span></a>
+                            <div class="input-group input-group-alternative input-group-merge" style="width: 25%; float: right; margin: 0 10px 0 0">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="input-group-text"><i class="fas fa-search"></i></button>
+                                </div>
+                                <input class="form-control" placeholder="Tìm kiếm" type="text" name="searchString">
+                            </div>
+
+                        </div>
+
+
+                    }
+                    <h3 class="mb-0">Quản lý Menu</h3>
+                </div>
+
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-lg-center">Sản phẩm</th>
+                                <th class="text-lg-center">Sản phẩm hot</th>
+                                <th class="text-lg-center">Tên sản phẩm</th>
+                                <th class="text-lg-center">Mã sản phẩm</th>
+                                <th class="text-lg-center">Nguồn trang</th>
+                                <th class="text-lg-center">Xuất xứ</th>
+                                <th class="text-lg-center">Số lượng</th>
+                                <th class="text-lg-center">Trạng thái</th>
+                                <th class="text-lg-center">Tác vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.ProductID">
+                                    <td>
+                                        <img src="@item.Image" />
+                                    </td>
+                                    <td>
+                                        <img src="@item.MoreImage" />
+                                    </td>
+                                    <td class="text-lg-center">@item.ProductName</td>
+                                    <td class="text-lg-center">@item.Code</td>
+                                    <td class="text-lg-center">@item.SeoTitle</td>
+                                    <td class="text-lg-center">@item.Origin</td>
+                                    <td class="text-lg-center">@item.Quantity</td>
+                                    <td class="text-lg-center">
+                                        @if (item.Status)
+                                        {
+                                            <a href="#" class="btn btn-sm btn-success btn-change-status" data-id="@item.ProductID"><strong>Còn hàng</strong></a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" class="btn btn-sm btn-danger btn-change-status" data-id="@item.ProductID"><strong>Hết hàng</strong></a>
+                                        }
+
+                                    </td>
+                                    <td class="td-actions text-lg-center">
+                                        <a href="/Admin/Product/Edit/@item.ProductID" title="Chỉnh Sửa" class="btn btn-outline-success">
+                                            <i class="ni ni-settings"></i>
+                                        </a>
+
+                                        <a href="#" rel="tooltip" title="Xoá" onclick="ConfirmDeleteProduct(@item.ProductID)" class="btn btn-outline-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hiddenProductId" />
+                    <div class="modal fade" id="myModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Xoá Menu</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+
+                                </div>
+                                <div class="modal-body">
+                                    <h3> Bạn chắc chắn muốn xoá bản ghi này chứ ?</h3>
+                                    <div style="text-align:center; display:none" id="loaderDivProduct">
+                                        <img width="150" src="~/Assets/admin/img/theme/InternetSlowdown_Day.gif" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class=" btn btn-success" data-dismiss="modal">Huỷ</a>
+                                    <a href="#" class="btn btn-danger" onclick="DeleteProduct()">Xoá</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer py-4" style="float:right;">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { @class = "page-link", page, @searchString = ViewBag.SearchString }));
+                                </li>
+                                @*<li class="page-item">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>*@
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }));*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

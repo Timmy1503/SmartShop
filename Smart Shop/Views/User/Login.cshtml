@@ -1,0 +1,87 @@
+﻿@model Smart_Shop.Models.LoginModel
+
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var url = "/dang-nhap?returnUrl=" + HttpUtility.UrlEncode(ViewData["returnUrl"] !=null ? ViewData["returnUrl"].ToString() : "");
+
+
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Đăng nhập</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- login -->
+<div class="login">
+    <div class="container">
+        <h2>Đăng nhập</h2>
+
+        <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+
+          
+            <form action="@url" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Đăng nhập tài khoản</h4>
+                    <hr />
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = " col-md-6" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Nhập tài khoản" })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-md-6" })
+                        <div class="col-md-12">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="forgot">
+
+                        <a href="/quen-mat-khau">Quên mật khẩu?</a>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <input type="submit" value="Đăng nhập" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="justify-content: flex-end; display: flex; margin: 0px -33px 0px 0px;">
+                        <div class="col-md-9">
+                            <a class="btn btn-block btn-social btn-facebook" href="/User/LoginFacebook">
+                                <i class="fa fa-facebook"></i> Đăng nhập với FaceBook
+                            </a>
+
+                        </div>
+                        <div class="col-md-9">
+                            <a class="btn btn-block btn-social btn-google" href="/User/LoginGoogle">@*@Url.Action("SignIn", new {type = "Google"})*@
+                                <i class="fa fa-google"></i> Đăng nhập với Google
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <h4>Dành cho người mới</h4>
+        <p><a href="/tao-tai-khoan">Đăng ký ở đây</a> (Hoặc) quay lại <a href="/">Trang chủ<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+    </div>
+</div>

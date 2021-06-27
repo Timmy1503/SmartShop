@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Câu hỏi thường gặp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var helpQuestion = (List<ConnectDb.EF.HelpQuestion>)ViewBag.HelpQuestion;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+            <li class="active">Câu hỏi thường gặp</li>
+        </ol>
+    </div>
+</div>
+
+<div class="faq-w3agile">
+    <div class="container">
+        <h2 class="w3_agile_header">Các câu hỏi thường gặp (FAQ)</h2>
+        <ul class="faq">
+            @foreach (var item in helpQuestion)
+            {
+                <li class="@item.DisplayOrder" style="font-size: 2rem;">
+                    <a href="#" title="click here">@item.MetaTitle</a>
+                    <ul>
+                        <li class="subitem1" style="font-size: 1.5rem;"><p> @item.Description</p></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+        <!-- script for tabs -->
+        <script type="text/javascript">
+				$(function() {
+
+					var menu_ul = $('.faq > li > ul'),
+						   menu_a  = $('.faq > li > a');
+
+					menu_ul.hide();
+
+					menu_a.click(function(e) {
+						e.preventDefault();
+						if(!$(this).hasClass('active')) {
+							menu_a.removeClass('active');
+							menu_ul.filter(':visible').slideUp('normal');
+							$(this).addClass('active').next().stop(true,true).slideDown('normal');
+						} else {
+							$(this).removeClass('active');
+							$(this).next().stop(true,true).slideUp('normal');
+						}
+					});
+
+				});
+        </script>
+        <!-- script for tabs -->
+    </div>
+</div>

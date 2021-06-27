@@ -1,0 +1,69 @@
+﻿@model ConnectDb.EF.Footer
+
+@{
+    ViewBag.Title = "Chỉnh sửa";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Cập nhật Footer
+}
+
+
+@section jsFooter{
+    <script>
+        var editor = CKEDITOR.replace('txtContent', {
+            customConfig: '/Assets/admin/js/Plugins/ckeditor/config.js',
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h2 class="card-title ">Chỉnh sửa Footer</h2>
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    @using (Html.BeginForm("Edit", "Footer", FormMethod.Post, null))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.FooterID)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id = "txtContent" })
+                                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(model => model.Status, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="btn btn-success">
+    <i class="fas fa-arrow-circle-left"></i>
+    <span>@Html.ActionLink("Quay lại", "Index", null, new { @style = "color: #fff;" })</span>
+</div>
